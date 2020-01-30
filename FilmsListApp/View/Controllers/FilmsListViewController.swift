@@ -69,9 +69,9 @@ extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = viewModel.customCellsArray[indexPath.row].typeObject
+        let typeObject = viewModel.customCellsArray[indexPath.row].typeObject
         
-        switch cellIdentifier {
+        switch typeObject {
         case .yearObject:
             guard let yearCell = tableView.dequeueReusableCell(withIdentifier: "yearCell") as? YearCell else {
                 return YearCell()

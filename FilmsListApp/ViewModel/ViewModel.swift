@@ -55,14 +55,14 @@ class ViewModel {
                 return
             }
             
-            let sortedWorkItem = DispatchWorkItem {
+            let serviceWorkItem = DispatchWorkItem {
                 self.sortedFilms(&films)
-                self.fillCustomCellArray(&films)
+                self.fillCustomCellArray(from: &films)
             }
             
-            DispatchQueue.global(qos: .utility).async(execute: sortedWorkItem)
+            DispatchQueue.global(qos: .utility).async(execute: serviceWorkItem)
             
-            sortedWorkItem.notify(queue: DispatchQueue.main) {
+            serviceWorkItem.notify(queue: DispatchQueue.main) {
                 self.delegate?.filmsDownloaded()
             }
         }
@@ -78,7 +78,7 @@ class ViewModel {
         }
     }
     
-    private func fillCustomCellArray(_ films: inout [Film]) {
+    private func fillCustomCellArray(from films: inout [Film]) {
         var currentYear = 0
         
         for film in films {
