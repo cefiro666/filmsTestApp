@@ -8,7 +8,7 @@
 
 import UIKit
 
-// MARK: DataObject
+// MARK: - DataObject
 enum TypeObject {
     case yearObject
     case filmObject
@@ -28,7 +28,7 @@ struct FilmObject: DataObject {
     var film: Film
 }
 
-// MARK: ViewModelDelegate
+// MARK: - ViewModelDelegate
 protocol ViewModelDelegate: AnyObject {
     func filmsDownloaded()
     func errorDownoadingFilms()
@@ -36,18 +36,18 @@ protocol ViewModelDelegate: AnyObject {
 
 class ViewModel {
     
-    // MARK: Properties
+    // MARK: - Properties
     var customCellsArray = [DataObject]()
     
     private var dataFetcherService = DataFetcherService()
     weak var delegate: ViewModelDelegate?
     
-    // MARK: Inits
+    // MARK: - Inits
     init() {
         getFilms()
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     private func getFilms() {
         dataFetcherService.fetchFilms { (filmList) in
             guard var films = filmList?.films else {

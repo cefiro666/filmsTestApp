@@ -10,13 +10,13 @@ import UIKit
 
 class FilmsListViewController: UIViewController {
 
-    // MARK: Properties
-    @IBOutlet weak var filmsTableView: UITableView!
-    @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
+    // MARK: - Properties
+    @IBOutlet private weak var filmsTableView: UITableView!
+    @IBOutlet private weak var downloadIndicator: UIActivityIndicatorView!
     
     private var viewModel = ViewModel()
     
-    // MARK: VC life cycle
+    // MARK: - ViewController life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +27,7 @@ class FilmsListViewController: UIViewController {
         setupFilmsTable()
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     private func setupFilmsTable() {
         filmsTableView.estimatedRowHeight = 44
         filmsTableView.rowHeight = UITableView.automaticDimension
@@ -62,8 +62,9 @@ class FilmsListViewController: UIViewController {
     }
 }
 
-// MARK: UITableViewDataSource, UITableViewDelegate
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.customCellsArray.count
     }
@@ -106,10 +107,21 @@ extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
         
         performSegue(withIdentifier: "showFilm", sender: film)
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
 }
 
-// MARK: ViewModelDelegate
+// MARK: - ViewModelDelegate
 extension FilmsListViewController: ViewModelDelegate {
+    
     func filmsDownloaded() {
         showFilmsTable()
     }

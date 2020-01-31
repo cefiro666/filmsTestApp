@@ -10,11 +10,11 @@ import UIKit
 
 class YearCell: UITableViewCell {
 
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet private weak var yearLabel: UILabel!
     @IBOutlet private weak var substraiteView: UIView!
     
-    // MARK: Methods
+    // MARK: - Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         
