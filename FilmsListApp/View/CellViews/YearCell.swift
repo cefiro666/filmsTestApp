@@ -35,3 +35,11 @@ class YearCell: UITableViewCell {
         yearLabel.text = yearObject?.stringFromYear
     }
 }
+
+// MARK: - InfoFromCell
+extension YearCell: InfoFromCell {
+    
+    static var identifier: String {
+        return "yearCell"
+    }
+}

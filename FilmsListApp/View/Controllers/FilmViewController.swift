@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol FilmController {
+    
+    var filmObject: FilmObject? { get set }
+}
+
 class FilmViewController: UIViewController {
     
     // MARK: - Properties
@@ -17,7 +22,7 @@ class FilmViewController: UIViewController {
     @IBOutlet private weak var ratingLabel: UILabel!
     @IBOutlet private weak var descriptionText: UITextView!
     
-    var filmObject: FilmObject?
+    private var _filmObject: FilmObject?
     
     // MARK: - ViewController life cycle
     override func viewDidLoad() {
@@ -27,7 +32,6 @@ class FilmViewController: UIViewController {
         setupPoster()
     }
     
-    // MARK: - Methods
     private func setupInfo() {
         guard let filmObject = filmObject else {
             return
@@ -49,6 +53,19 @@ class FilmViewController: UIViewController {
             posterImageView.image = image
         } else {
             posterImageView.downloaded(from: imageUrlString)
+        }
+    }
+}
+
+// MARK: - FilmController
+extension FilmViewController: FilmController {
+    
+    var filmObject: FilmObject? {
+        get {
+            return _filmObject
+        }
+        set {
+            _filmObject = newValue
         }
     }
 }

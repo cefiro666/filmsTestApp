@@ -56,7 +56,7 @@ protocol ViewModelDelegate: AnyObject {
 class ViewModel {
     
     // MARK: - Properties
-    var customCellsArray = [DataObject]()
+    var objectArray = [DataObject]()
     
     private var dataFetcherService = DataFetcherService()
     weak var delegate: ViewModelDelegate?
@@ -76,7 +76,7 @@ class ViewModel {
             
             let serviceWorkItem = DispatchWorkItem {
                 self.sortedFilms(&films)
-                self.fillCustomCellArray(from: &films)
+                self.fillObjectArray(from: &films)
             }
             
             DispatchQueue.global(qos: .utility).async(execute: serviceWorkItem)
@@ -97,25 +97,25 @@ class ViewModel {
         }
     }
     
-    private func fillCustomCellArray(from films: inout [Film]) {
+    private func fillObjectArray(from films: inout [Film]) {
         var currentYear = 0
         
         for film in films {
             if film.year != currentYear {
-                let yearCell = YearObject(year: film.year)
-                customCellsArray.append(yearCell)
+                let yearObject = YearObject(year: film.year)
+                objectArray.append(yearObject)
                 
                 currentYear = film.year
             }
             
-            let filmCell = FilmObject(localizedName:    film.localized_name,
+            let filmObject = FilmObject(localizedName:    film.localized_name,
                                       name:             film.name,
                                       year:             film.year,
                                       rating:           film.rating,
                                       imageUrl:         film.image_url,
                                       description:      film.description)
             
-            customCellsArray.append(filmCell)
+            objectArray.append(filmObject)
         }
     }
 }

@@ -16,6 +16,7 @@ extension UIImageView {
         contentMode = mode
         
         AF.request(link).responseData { (data) in
+            
             switch data.result {
             case .success(let data):
                 if let image = UIImage(data: data) {
@@ -37,9 +38,9 @@ extension UIImageView {
                           options: .transitionFlipFromRight,
                           animations: {
                             
-                            self.image = image
-                            
-                        }, completion: nil)
+            self.image = image
+            
+        }, completion: nil)
     }
 }
 

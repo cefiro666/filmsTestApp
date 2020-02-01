@@ -8,13 +8,21 @@
 
 import UIKit
 
+protocol FilmsListController: ViewModelDelegate {
+    
+    var viewModel: ViewModel { get set }
+    
+    func filmsDownloaded()
+    func errorDownoadingFilms()
+}
+
 class FilmsListViewController: UIViewController {
 
     // MARK: - Properties
     @IBOutlet private weak var filmsTableView: UITableView!
     @IBOutlet private weak var downloadIndicator: UIActivityIndicatorView!
     
-    private var viewModel = ViewModel()
+    private var _viewModel = ViewModel()
     
     // MARK: - ViewController life cycle
     override func viewDidLoad() {
@@ -47,12 +55,25 @@ class FilmsListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showFilm" {
             guard
-                let filmViewController = segue.destination as? FilmViewController,
+                var filmController = segue.destination as? FilmController,
                 let filmObject = sender as? FilmObject else {
                     return
             }
             
-            filmViewController.filmObject = filmObject
+            filmController.filmObject = filmObject
+        }
+    }
+}
+
+// MARK: - FilmsListController
+extension FilmsListViewController: FilmsListController {
+    
+    var viewModel: ViewModel {
+        get {
+            return _viewModel
+        }
+        set {
+            _viewModel = newValue
         }
     }
 }
@@ -70,7 +91,7 @@ extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
         switch typeObject {
         case .yearObject:
             guard let
-                yearCell = tableView.dequeueReusableCell(withIdentifier: "yearCell") as? YearCell,
+                yearCell = tableView.dequeueReusableCell(withIdentifier: YearCell.identifier) as? YearCell,
                 let yearObject = viewModel.customCellsArray[indexPath.row] as? YearObject else {
                     
                 return YearCell()
@@ -81,7 +102,7 @@ extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
             
         case .filmObject:
             guard
-                let filmCell = tableView.dequeueReusableCell(withIdentifier: "filmCell") as? FilmCell,
+                let filmCell = tableView.dequeueReusableCell(withIdentifier: FilmCell.identifier) as? FilmCell,
                 let filmObject = viewModel.customCellsArray[indexPath.row] as? FilmObject else {
                     
                 return FilmCell()

@@ -19,18 +19,19 @@ class NetworkDataFetcher: DataFetcher {
     
     // MARK: - Methods
     func fetchData<T>(urlString: String, response: @escaping (T?) -> Void) where T : Decodable {
+        
         AF.request(urlString).responseDecodable(of: T.self,
                                                 queue: DispatchQueue.main,
                                                 decoder: JSONDecoder()) { (data) in
             
-                                                    switch data.result {
-                                                    case .success(let data):
-                                                        response(data)
-                                                        
-                                                    case .failure(let error):
-                                                        print(error.localizedDescription)
-                                                        response(nil)
-                                                    }
+            switch data.result {
+            case .success(let data):
+                response(data)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+                response(nil)
+            }
         }
     }
 }

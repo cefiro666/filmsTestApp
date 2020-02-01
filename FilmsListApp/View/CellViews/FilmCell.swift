@@ -39,3 +39,11 @@ class FilmCell: UITableViewCell {
         ratingLabel.setupLabel(forRating: filmObject?.rating)
     }
 }
+
+// MARK: - InfoFromCell
+extension FilmCell: InfoFromCell {
+    
+    static var identifier: String {
+        return "filmCell"
+    }
+}

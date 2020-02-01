@@ -9,6 +9,8 @@
 import UIKit
 
 class ImageCacheHelper: NSObject {
+    
+    // MARK: - Methods
     private static var cachedImages = NSCache<NSString, UIImage>()
     
     class func add(image: UIImage, fromUrl url: String) {
