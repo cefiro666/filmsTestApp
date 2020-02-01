@@ -14,6 +14,12 @@ class YearCell: UITableViewCell {
     @IBOutlet private weak var yearLabel: UILabel!
     @IBOutlet private weak var substraiteView: UIView!
     
+    var yearObject: YearObject? {
+        didSet {
+            configureCellFromYearObject()
+        }
+    }
+    
     // MARK: - Methods
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,10 +28,10 @@ class YearCell: UITableViewCell {
     }
     
     private func setupCell() {
-        substraiteView.layer.cornerRadius = 7
+        substraiteView.layer.cornerRadius = 5
     }
     
-    func setYear(year: Int) {
-        yearLabel.text = String(year)
+    private func configureCellFromYearObject() {
+        yearLabel.text = yearObject?.stringFromYear
     }
 }

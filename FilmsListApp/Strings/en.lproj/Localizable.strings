@@ -1,0 +1,17 @@
+/* 
+  LocalizedString.strings
+  FilmsListApp
+
+  Created by Виталий Баник on 01.02.2020.
+  Copyright © 2020 Виталий Баник. All rights reserved.
+*/
+
+
+// MARK: - Alerts
+"errorAlert" =              "Возникла ошибка!";
+"errorAlertMessage" =       "Скорее всего вы не подключены к интернету или нет доступа к серверу. Попробуйте позже.";
+
+// MARK: - Interface
+"films" =                   "Фильмы";
+"year" =                    "Год: ";
+"noDescription" =           "Описание отсутствует.";

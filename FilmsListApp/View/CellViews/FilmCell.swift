@@ -16,6 +16,12 @@ class FilmCell: UITableViewCell {
     @IBOutlet private weak var ratingLabel: UILabel!
     @IBOutlet private weak var substraiteView: UIView!
     
+    var filmObject: FilmObject? {
+        didSet {
+            configureCellFromFilmObject()
+        }
+    }
+    
     // MARK: - Methods
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,19 +30,12 @@ class FilmCell: UITableViewCell {
     }
     
     private func setupCell() {
-        substraiteView.layer.cornerRadius = 7
+        substraiteView.layer.cornerRadius = 5
     }
     
-    func setInfoForFilm(localName: String, name: String, rating: Float?) {
-        localizedNameLabel.text = localName
-        nameLabel.text = name
-        
-        guard let rating = rating else {
-            ratingLabel.text = "-"
-            ratingLabel.textColor = #colorLiteral(red: 0.3707730174, green: 0.370819658, blue: 0.3707520962, alpha: 1)
-            return
-        }
-            
-        ratingLabel.setupLabel(forRating: rating)
+    private func configureCellFromFilmObject() {
+        localizedNameLabel.text = filmObject?.localizedName
+        nameLabel.text = filmObject?.name
+        ratingLabel.setupLabel(forRating: filmObject?.rating)
     }
 }

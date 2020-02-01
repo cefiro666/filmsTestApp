@@ -16,16 +16,35 @@ enum TypeObject {
 
 protocol DataObject {
     var typeObject: TypeObject { get }
+    var year: Int { get set }
+    var stringFromYear: String { get }
+}
+
+extension DataObject {
+    var stringFromYear: String {
+        return String(year)
+    }
 }
 
 struct YearObject: DataObject {
-    var typeObject: TypeObject = .yearObject
+    var typeObject: TypeObject {
+        return .yearObject
+    }
+    
     var year: Int
 }
 
 struct FilmObject: DataObject {
-    var typeObject: TypeObject = .filmObject
-    var film: Film
+    var typeObject: TypeObject {
+        return .filmObject
+    }
+    
+    var localizedName: String
+    var name: String
+    var year: Int
+    var rating: Float?
+    var imageUrl: String?
+    var description: String?
 }
 
 // MARK: - ViewModelDelegate
@@ -89,7 +108,13 @@ class ViewModel {
                 currentYear = film.year
             }
             
-            let filmCell = FilmObject(film: film)
+            let filmCell = FilmObject(localizedName:    film.localized_name,
+                                      name:             film.name,
+                                      year:             film.year,
+                                      rating:           film.rating,
+                                      imageUrl:         film.image_url,
+                                      description:      film.description)
+            
             customCellsArray.append(filmCell)
         }
     }

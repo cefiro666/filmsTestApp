@@ -10,16 +10,16 @@ import UIKit
 
 class FilmViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: - Properties
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var yearLabel: UILabel!
     @IBOutlet private weak var ratingLabel: UILabel!
     @IBOutlet private weak var descriptionText: UITextView!
     
-    var film: Film!
+    var filmObject: FilmObject?
     
-    // MARK: VC life cycle
+    // MARK: - ViewController life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,27 +27,28 @@ class FilmViewController: UIViewController {
         setupPoster()
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     private func setupInfo() {
-        navigationItem.title = film.localized_name
-        
-        nameLabel.text = film.name
-        yearLabel.text = "Год: \(String(film.year))"
-        descriptionText.text = film.description ?? "Описание отсутствует"
-        
-        if let rating = film.rating {
-            ratingLabel.setupLabel(forRating: rating)
-        } else {
-            ratingLabel.text = "-"
-            ratingLabel.textColor = #colorLiteral(red: 0.3707730174, green: 0.370819658, blue: 0.3707520962, alpha: 1)
-        }
-    }
-    
-    private func setupPoster() {
-        guard let imageUrlString = film.image_url else {
+        guard let filmObject = filmObject else {
             return
         }
         
-        posterImageView.downloaded(from: imageUrlString)
+        navigationItem.title = filmObject.localizedName
+        nameLabel.text = filmObject.name
+        yearLabel.text = "year".localized + filmObject.stringFromYear
+        ratingLabel.setupLabel(forRating: filmObject.rating)
+        descriptionText.text = filmObject.description ?? "noDescription".localized
+    }
+    
+    private func setupPoster() {
+        guard let imageUrlString = filmObject?.imageUrl else {
+            return
+        }
+        
+        if let image = ImageCacheHelper.getImageFrom(url: imageUrlString) {
+            posterImageView.image = image
+        } else {
+            posterImageView.downloaded(from: imageUrlString)
+        }
     }
 }

@@ -24,10 +24,15 @@ class FilmsListViewController: UIViewController {
         filmsTableView.dataSource = self
         filmsTableView.delegate = self
         
+        setupTitle()
         setupFilmsTable()
     }
     
     // MARK: - Methods
+    private func setupTitle() {
+        navigationItem.title = "films".localized
+    }
+    
     private func setupFilmsTable() {
         filmsTableView.estimatedRowHeight = 44
         filmsTableView.rowHeight = UITableView.automaticDimension
@@ -39,25 +44,15 @@ class FilmsListViewController: UIViewController {
         filmsTableView.reloadData()
     }
     
-    private func showAlert() {
-        let alert = UIAlertController(title: "Возникла ошибка!",
-                                      message: "Скорее всего вы не подключены к интернету или нет доступа к серверу. Попробуйте позже.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true) {
-            self.downloadIndicator.stopAnimating()
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showFilm" {
             guard
                 let filmViewController = segue.destination as? FilmViewController,
-                let film = sender as? Film else {
+                let filmObject = sender as? FilmObject else {
                     return
             }
             
-            filmViewController.film = film
+            filmViewController.filmObject = filmObject
         }
     }
 }
@@ -74,38 +69,38 @@ extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch typeObject {
         case .yearObject:
-            guard let yearCell = tableView.dequeueReusableCell(withIdentifier: "yearCell") as? YearCell else {
+            guard let
+                yearCell = tableView.dequeueReusableCell(withIdentifier: "yearCell") as? YearCell,
+                let yearObject = viewModel.customCellsArray[indexPath.row] as? YearObject else {
+                    
                 return YearCell()
             }
             
-            let yearObject = viewModel.customCellsArray[indexPath.row] as! YearObject
-            yearCell.setYear(year: yearObject.year)
-            
+            yearCell.yearObject = yearObject
             return yearCell
             
         case .filmObject:
-            guard let filmCell = tableView.dequeueReusableCell(withIdentifier: "filmCell") as? FilmCell else {
+            guard
+                let filmCell = tableView.dequeueReusableCell(withIdentifier: "filmCell") as? FilmCell,
+                let filmObject = viewModel.customCellsArray[indexPath.row] as? FilmObject else {
+                    
                 return FilmCell()
             }
             
-            let filmObject = viewModel.customCellsArray[indexPath.row] as! FilmObject
-            filmCell.setInfoForFilm(localName: filmObject.film.localized_name,
-                                        name: filmObject.film.name,
-                                        rating: filmObject.film.rating)
-            
+            filmCell.filmObject = filmObject
             return filmCell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard viewModel.customCellsArray[indexPath.row].typeObject != .yearObject else {
+        guard
+            viewModel.customCellsArray[indexPath.row].typeObject != .yearObject,
+            let filmObject = viewModel.customCellsArray[indexPath.row] as? FilmObject else {
+            
             return
         }
         
-        let filmObject = viewModel.customCellsArray[indexPath.row] as! FilmObject
-        let film = filmObject.film
-        
-        performSegue(withIdentifier: "showFilm", sender: film)
+        performSegue(withIdentifier: "showFilm", sender: filmObject)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -127,6 +122,10 @@ extension FilmsListViewController: ViewModelDelegate {
     }
     
     func errorDownoadingFilms() {
-        showAlert()
+        self.showAlert(title: "errorAlert".localized,
+                       message: "errorAlertMessage".localized) {
+                        
+            self.downloadIndicator.stopAnimating()
+        }
     }
 }
