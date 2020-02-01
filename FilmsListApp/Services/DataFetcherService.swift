@@ -20,6 +20,7 @@ class DataFetcherService {
     
     // MARK: - Methods
     func fetchFilms(completion: @escaping (FilmsList?) -> Void) {
+        
         let urlJSONFilms = "https://s3-eu-west-1.amazonaws.com/sequeniatesttask/films.json"
         dataFetcher.fetchData(urlString: urlJSONFilms, response: completion)
     }

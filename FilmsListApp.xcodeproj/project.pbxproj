@@ -24,6 +24,7 @@
 		9A4E3A8C23E53FF900D4E415 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E3A8E23E53FF900D4E415 /* Localizable.strings */; };
 		9A4EC8FD23E570AC00BDAA2C /* ImageCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EC8FC23E570AC00BDAA2C /* ImageCacheHelper.swift */; };
 		9A4EC8FF23E5870D00BDAA2C /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EC8FE23E5870D00BDAA2C /* CellProtocol.swift */; };
+		9A4EC90123E5905700BDAA2C /* ViewModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EC90023E5905700BDAA2C /* ViewModelProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		9A4E3A8D23E53FF900D4E415 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9A4EC8FC23E570AC00BDAA2C /* ImageCacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheHelper.swift; sourceTree = "<group>"; };
 		9A4EC8FE23E5870D00BDAA2C /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
+		9A4EC90023E5905700BDAA2C /* ViewModelProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocols.swift; sourceTree = "<group>"; };
 		B6A5BA82195DCC38B706B2E9 /* Pods_FilmsListApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FilmsListApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 		9A46D85923E28A1000F931A6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9A4EC90023E5905700BDAA2C /* ViewModelProtocols.swift */,
 				9A46D85A23E28B5900F931A6 /* ViewModel.swift */,
 			);
 			path = ViewModel;
@@ -311,6 +314,7 @@
 				9A4EC8FF23E5870D00BDAA2C /* CellProtocol.swift in Sources */,
 				9A46D83623E285E100F931A6 /* AppDelegate.swift in Sources */,
 				9A46D86423E2C23700F931A6 /* Extensions.swift in Sources */,
+				9A4EC90123E5905700BDAA2C /* ViewModelProtocols.swift in Sources */,
 				9A46D85F23E2984400F931A6 /* FilmCell.swift in Sources */,
 				9A4EC8FD23E570AC00BDAA2C /* ImageCacheHelper.swift in Sources */,
 			);

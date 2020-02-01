@@ -8,45 +8,6 @@
 
 import UIKit
 
-// MARK: - DataObject
-enum TypeObject {
-    case yearObject
-    case filmObject
-}
-
-protocol DataObject {
-    var typeObject: TypeObject { get }
-    var year: Int { get set }
-    var stringFromYear: String { get }
-}
-
-extension DataObject {
-    var stringFromYear: String {
-        return String(year)
-    }
-}
-
-struct YearObject: DataObject {
-    var typeObject: TypeObject {
-        return .yearObject
-    }
-    
-    var year: Int
-}
-
-struct FilmObject: DataObject {
-    var typeObject: TypeObject {
-        return .filmObject
-    }
-    
-    var localizedName: String
-    var name: String
-    var year: Int
-    var rating: Float?
-    var imageUrl: String?
-    var description: String?
-}
-
 // MARK: - ViewModelDelegate
 protocol ViewModelDelegate: AnyObject {
     func filmsDownloaded()
@@ -108,12 +69,12 @@ class ViewModel {
                 currentYear = film.year
             }
             
-            let filmObject = FilmObject(localizedName:    film.localized_name,
-                                      name:             film.name,
-                                      year:             film.year,
-                                      rating:           film.rating,
-                                      imageUrl:         film.image_url,
-                                      description:      film.description)
+            let filmObject = FilmObject(localizedName:      film.localized_name,
+                                      name:                 film.name,
+                                      year:                 film.year,
+                                      rating:               film.rating,
+                                      imageUrl:             film.image_url,
+                                      description:          film.description)
             
             objectsArray.append(filmObject)
         }
