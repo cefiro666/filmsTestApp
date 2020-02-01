@@ -19,8 +19,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="Hdc-tt-rHJ"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="MbU-bU-A73"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="yearCell" rowHeight="60" id="gvp-aV-h8a" customClass="YearCell" customModule="FilmsListApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
@@ -165,7 +163,7 @@
                                                 <rect key="frame" x="15" y="20" width="290" height="139"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="standartImage" translatesAutoresizingMaskIntoConstraints="NO" id="iOg-jo-Apn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="139"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="139.00000000000006"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="iOg-jo-Apn" secondAttribute="height" multiplier="1:1" constant="1" id="1T6-eG-lib"/>
                                                         </constraints>

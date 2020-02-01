@@ -82,17 +82,17 @@ extension FilmsListViewController: FilmsListController {
 extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.customCellsArray.count
+        return viewModel.objectsArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let typeObject = viewModel.customCellsArray[indexPath.row].typeObject
+        let typeObject = viewModel.objectsArray[indexPath.row].typeObject
         
         switch typeObject {
         case .yearObject:
             guard let
                 yearCell = tableView.dequeueReusableCell(withIdentifier: YearCell.identifier) as? YearCell,
-                let yearObject = viewModel.customCellsArray[indexPath.row] as? YearObject else {
+                let yearObject = viewModel.objectsArray[indexPath.row] as? YearObject else {
                     
                 return YearCell()
             }
@@ -103,7 +103,7 @@ extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
         case .filmObject:
             guard
                 let filmCell = tableView.dequeueReusableCell(withIdentifier: FilmCell.identifier) as? FilmCell,
-                let filmObject = viewModel.customCellsArray[indexPath.row] as? FilmObject else {
+                let filmObject = viewModel.objectsArray[indexPath.row] as? FilmObject else {
                     
                 return FilmCell()
             }
@@ -115,8 +115,8 @@ extension FilmsListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
-            viewModel.customCellsArray[indexPath.row].typeObject != .yearObject,
-            let filmObject = viewModel.customCellsArray[indexPath.row] as? FilmObject else {
+            viewModel.objectsArray[indexPath.row].typeObject != .yearObject,
+            let filmObject = viewModel.objectsArray[indexPath.row] as? FilmObject else {
             
             return
         }

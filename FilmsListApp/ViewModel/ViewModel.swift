@@ -56,7 +56,7 @@ protocol ViewModelDelegate: AnyObject {
 class ViewModel {
     
     // MARK: - Properties
-    var objectArray = [DataObject]()
+    var objectsArray = [DataObject]()
     
     private var dataFetcherService = DataFetcherService()
     weak var delegate: ViewModelDelegate?
@@ -103,7 +103,7 @@ class ViewModel {
         for film in films {
             if film.year != currentYear {
                 let yearObject = YearObject(year: film.year)
-                objectArray.append(yearObject)
+                objectsArray.append(yearObject)
                 
                 currentYear = film.year
             }
@@ -115,7 +115,7 @@ class ViewModel {
                                       imageUrl:         film.image_url,
                                       description:      film.description)
             
-            objectArray.append(filmObject)
+            objectsArray.append(filmObject)
         }
     }
 }
