@@ -1,0 +1,21 @@
+//
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+protocol {{ module_info.name }}Usecase: class {
+    
+    func execute(completion: (@escaping (_ success: Bool, _ errorMessage: String?) -> Void))
+}
+
+class {{ module_info.name }}UsecaseImpl: {{ module_info.name }}Usecase {
+
+    func execute(completion: @escaping ((_ success: Bool, _ errorMessage: String?) -> Void)) {
+
+    }
+}

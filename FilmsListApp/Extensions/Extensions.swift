@@ -13,9 +13,9 @@ import UIKit
 extension UIImageView {
     
     func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
-        contentMode = mode
+        self.contentMode = mode
         
-        AF.request(link).responseData { (data) in
+        Alamofire.request(link).responseData { (data) in
             
             switch data.result {
             case .success(let data):
@@ -84,6 +84,14 @@ extension UIViewController {
             completion()
         }
     }
+    
+    class var identifier: String {
+        return String(describing: self)
+    }
+    
+    class func getControllerFromType<T: UIViewController>(_ type: T.Type) -> T? {
+        return UIStoryboard(name: T.identifier, bundle: nil).instantiateInitialViewController() as? T
+    }
 }
 
 // MARK: - String
@@ -91,5 +99,13 @@ extension String {
     
     var localized: String {
         return NSLocalizedString(self, comment: "")
+    }
+}
+
+// MARK: - UIView
+extension UIView {
+    
+    class var identifier: String {
+        return String(describing: self)
     }
 }

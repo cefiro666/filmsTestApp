@@ -1,0 +1,28 @@
+### Headers settings
+company: MyCompany
+
+### Xcode project settings
+project_name: filmsTestApp
+xcodeproj_path: FilmsListApp.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: FilmsListApp
+
+# The file path for new modules
+project_file_path: Modules
+
+# The Xcode group path to new modules
+project_group_path: Modules
+
+### Dependencies settings section
+podfile_path: Podfile
+
+### Templates
+templates:
+- {name: VuperTable}
+- {name: Vuper}
+- {name: Usecase}
+
+catalogs:
+- 'git@gitlab.sequenia.com:templates/TemplatesIOS.git'

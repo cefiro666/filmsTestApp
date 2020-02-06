@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wjy-X6-3Pd">
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="pfW-t1-wxw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wjy-X6-3Pd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Scj-4U-O0B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WKr-JL-gOD" kind="relationship" relationship="rootViewController" id="O2R-Tx-DNV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="71h-aB-v4O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1625" y="22"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Ucs-Oh-NTz">
+            <objects>
+                <tableViewController id="WKr-JL-gOD" customClass="FilmsListTableViewController" customModule="FilmsListApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nLc-dA-dai">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="WKr-JL-gOD" id="4hN-pC-xfu"/>
+                            <outlet property="delegate" destination="WKr-JL-gOD" id="Fqz-tw-Rpw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="nNd-7v-P5H">
+                        <barButtonItem key="backBarButtonItem" title=" " id="zhu-8r-bvf"/>
+                    </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="WGU-qk-abh">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle"/>
+                        <connections>
+                            <action selector="refreshData:" destination="WKr-JL-gOD" eventType="valueChanged" id="668-s2-UmS"/>
+                        </connections>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DVA-TV-9Sj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="av1-89-9qf" customClass="FilmsListConfiguratorImpl" customModule="FilmsListApp" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="WKr-JL-gOD" id="6cX-9h-6nV"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="2350" y="21"/>
+        </scene>
+    </scenes>
+</document>

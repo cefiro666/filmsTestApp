@@ -1,0 +1,11 @@
+# Template information section
+name: "Usecase"
+summary: "Swift Usecase module for data interations"
+author: "Sequenia"
+version: "0.1.0"
+
+# The declarations for code files
+
+code_files:
+# Usecase layer
+- {name: Usecase.swift, path: Usecase.swift.liquid}
