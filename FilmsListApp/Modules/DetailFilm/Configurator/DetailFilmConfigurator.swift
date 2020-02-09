@@ -42,6 +42,6 @@ class DetailFilmConfiguratorImpl: NSObject {
 extension DetailFilmConfiguratorImpl: DetailFilmConfigurator {
     
     func setFilmModel(_ filmModel: FilmModel) {
-        presenter?.filmModel = filmModel
+        self.presenter?.filmModel = filmModel
     }
 }

@@ -15,7 +15,7 @@ extension UIImageView {
     func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
         self.contentMode = mode
         
-        Alamofire.request(link).responseData { (data) in
+        Alamofire.request(link).responseData { data in
             
             switch data.result {
             case .success(let data):
@@ -72,7 +72,7 @@ extension UILabel {
 // MARK: - UIViewController
 extension UIViewController {
     
-    func showAlert(title: String, message: String, completion: @escaping () -> ()) {
+    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
@@ -80,9 +80,7 @@ extension UIViewController {
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(action)
         
-        present(alert, animated: true) {
-            completion()
-        }
+        present(alert, animated: true)
     }
     
     class var identifier: String {

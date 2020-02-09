@@ -18,7 +18,7 @@ class InfoFilmCell: UITableViewCell {
     
     var filmModel: FilmModel? {
         didSet {
-            configure()
+            self.configure()
         }
     }
     
@@ -30,29 +30,29 @@ class InfoFilmCell: UITableViewCell {
     }
     
     private func configure() {
-        setupInfo()
-        setupPoster()
+        self.setupInfo()
+        self.setupPoster()
     }
 
     private func setupInfo() {
-        guard let filmModel = filmModel else {
+        guard let filmModel = self.filmModel else {
             return
         }
         
-        nameLabel.text = filmModel.name
-        yearLabel.text = "year".localized + filmModel.stringFromYear
-        ratingLabel.setupLabel(forRating: filmModel.rating)
+        self.nameLabel.text = filmModel.name
+        self.yearLabel.text = "year".localized + filmModel.stringFromYear
+        self.ratingLabel.setupLabel(forRating: filmModel.rating)
     }
     
     private func setupPoster() {
-        guard let imageUrlString = filmModel?.imageUrl else {
+        guard let imageUrlString = self.filmModel?.imageUrl else {
             return
         }
         
         if let image = ImageCacheHelper.getImageFrom(url: imageUrlString) {
-            posterImage.image = image
+            self.posterImage.image = image
         } else {
-            posterImage.downloaded(from: imageUrlString)
+            self.posterImage.downloaded(from: imageUrlString)
         }
     }
 }

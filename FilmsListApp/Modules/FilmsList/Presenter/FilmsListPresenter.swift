@@ -6,25 +6,31 @@
 //  Copyright © 2020 MyCompany. All rights reserved.
 //
 
+// MARK: - FilmsListPresenter
 protocol FilmsListPresenter {
+    
     init(view: FilmsListView, router: FilmsListRouter, getFilmsUsecase: GetFilmsUsecase)
 
     func showDetailFilmController(fromFilmModel filmModel: FilmModel)
     func viewDidLoad()
 }
 
+// MARK: - FilmsListPresenterImpl
 class FilmsListPresenterImpl: FilmsListPresenter {
     
+    // MARK: - Properties
     weak var view: FilmsListView?
     var router: FilmsListRouter?
     var getFilmsUsecase: GetFilmsUsecase?
 
+    // MARK: - Inits
     required init(view: FilmsListView, router: FilmsListRouter, getFilmsUsecase: GetFilmsUsecase) {
         self.view = view
         self.router = router
         self.getFilmsUsecase = getFilmsUsecase
     }
 
+    // MARK: - Methods
     func viewDidLoad() {
         getFilmsUsecase?.execute(completion: { (success, films, error) in
             if success {
@@ -32,14 +38,16 @@ class FilmsListPresenterImpl: FilmsListPresenter {
                     return FilmModel(from: film)
                 })
                 
-                self.view?.showFilmsListFromModels(filmModels!)
+                self.view?.setFilmModels(filmModels!)
+                
             } else {
+                
                 self.view?.showErrorDownoadingFilms()
             }
         })
     }
     
     func showDetailFilmController(fromFilmModel filmModel: FilmModel) {
-        router?.showDetailFilmControllerFromFilmModel(filmModel)
+        self.router?.showDetailFilmControllerFromFilmModel(filmModel)
     }
 }

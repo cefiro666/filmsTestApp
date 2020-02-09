@@ -10,6 +10,7 @@ import Moya
 
 // MARK: - FilmProvider
 enum FilmProvider {
+    
     case getFilms
 }
 
@@ -42,10 +43,9 @@ extension FilmProvider: TargetType {
     }
     
     var headers: [String : String]? {
-        let headers: [String : String] =  [
-            HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue
-        ]
-        
-        return headers
+        switch self {
+        case .getFilms:
+            return  [HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue]
+        }
     }
 }

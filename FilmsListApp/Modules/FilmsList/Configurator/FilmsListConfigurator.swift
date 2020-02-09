@@ -8,14 +8,19 @@
 
 import UIKit
 
+// MARK: - FilmsListConfigurator
 protocol FilmsListConfigurator: class {
+    
 }
 
+// MARK: - FilmsListConfiguratorImpl
 class FilmsListConfiguratorImpl: NSObject, FilmsListConfigurator {
 
-    @IBOutlet weak var viewController: FilmsListTableViewController!
+    // MARK: - Properties
+    @IBOutlet private weak var viewController: FilmsListTableViewController!
     weak var presenter: FilmsListPresenterImpl?
 
+    // MARK: - Methods
     override func awakeFromNib() {
 
         self.configure(viewController: viewController)
@@ -28,7 +33,9 @@ class FilmsListConfiguratorImpl: NSObject, FilmsListConfigurator {
 
         let getFilmUsecase = GetFilmUsecaseImpl()
         
-        let presenter = FilmsListPresenterImpl.init(view: viewController, router: router, getFilmsUsecase: getFilmUsecase)
+        let presenter = FilmsListPresenterImpl.init(view: viewController,
+                                                    router: router,
+                                                    getFilmsUsecase: getFilmUsecase)
 
         viewController.presenter = presenter
         viewController.configurator = self

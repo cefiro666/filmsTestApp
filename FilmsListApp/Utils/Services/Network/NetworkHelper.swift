@@ -10,12 +10,14 @@ import Moya
 
 // MARK: - HTTPHeaderField
 enum HTTPHeaderField: String {
+    
     case contentType = "Content-Type"
     case acceptType = "Accept"
 }
 
 // MARK: - ContentType
 enum ContentType: String {
+    
     case json = "application/json"
 }
 

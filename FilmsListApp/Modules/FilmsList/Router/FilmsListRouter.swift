@@ -8,15 +8,19 @@
 
 import UIKit
 
+// MARK: - FilmsListRouter
 protocol FilmsListRouter {
     
     func showDetailFilmControllerFromFilmModel(_ filmModel: FilmModel)
 }
 
+// MARK: - FilmsListRouterImpl
 class FilmsListRouterImpl: FilmsListRouter {
 
+    // MARK: - Properties
     weak var view: UIViewController?
 
+    // MARK: - Methods
     func showDetailFilmControllerFromFilmModel(_ filmModel: FilmModel) {
         guard let detailFilmViewController = UIViewController.getControllerFromType(DetailFilmViewController.self) else { return }
         

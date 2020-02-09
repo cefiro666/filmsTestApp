@@ -15,6 +15,7 @@ protocol DetailFilmView: AnyObject {
 
 // MARK: - Sections enum
 private enum Sections: Int {
+    
     case info
     case description
     case sectionsCount

@@ -18,7 +18,7 @@ class FilmCell: UITableViewCell {
     
     var filmModel: FilmModel? {
         didSet {
-            configure()
+            self.configure()
         }
     }
     
@@ -27,12 +27,12 @@ class FilmCell: UITableViewCell {
         super.awakeFromNib()
     
         self.selectionStyle = .none
-        substraiteView.layer.cornerRadius = 5
+        self.substraiteView.layer.cornerRadius = 5
     }
     
     private func configure() {
-        localizedNameLabel.text = filmModel?.localizedName
-        nameLabel.text = filmModel?.name
-        ratingLabel.setupLabel(forRating: filmModel?.rating)
+        self.localizedNameLabel.text = self.filmModel?.localizedName
+        self.nameLabel.text = self.filmModel?.name
+        self.ratingLabel.setupLabel(forRating: self.filmModel?.rating)
     }
 }

@@ -15,10 +15,10 @@ class ImageCacheHelper: NSObject {
     
     // MARK: - Methods
     class func add(image: UIImage, fromUrl url: String) {
-        cachedImages.setObject(image, forKey: url as NSString)
+        self.cachedImages.setObject(image, forKey: url as NSString)
     }
     
     class func getImageFrom(url: String) -> UIImage? {
-        return cachedImages.object(forKey: url as NSString)
+        return self.cachedImages.object(forKey: url as NSString)
     }
 }

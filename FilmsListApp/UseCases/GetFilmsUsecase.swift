@@ -25,7 +25,7 @@ extension GetFilmUsecaseImpl: GetFilmsUsecase {
     
     func execute(completion: @escaping ((Bool, [Film]?, String?) -> Void)) {
         
-        provider.request(.getFilms) { result in
+        self.provider.request(.getFilms) { result in
             switch result {
             case .success(let response):
                 guard let films = try? response.map(Films.self).films else {

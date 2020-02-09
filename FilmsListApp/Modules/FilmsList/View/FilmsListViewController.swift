@@ -11,7 +11,7 @@ import UIKit
 // MARK: - FilmsListView
 protocol FilmsListView: AnyObject {
     
-    func showFilmsListFromModels(_ filmModels: [FilmModel])
+    func setFilmModels(_ filmModels: [FilmModel])
     func showErrorDownoadingFilms()
 }
 
@@ -28,14 +28,14 @@ class FilmsListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
-        presenter?.viewDidLoad()
+        self.setup()
+        self.presenter?.viewDidLoad()
     }
     
     // MARK: - Methods
     private func setup() {
-        setupTitle()
-        setupTable()
+        self.setupTitle()
+        self.setupTable()
     }
     
     private func setupTitle() {
@@ -48,6 +48,7 @@ class FilmsListTableViewController: UITableViewController {
         
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
+        self.refreshControl?.beginRefreshing()
     }
 
     private func updateTable() {
@@ -57,12 +58,12 @@ class FilmsListTableViewController: UITableViewController {
 
     // MARK: - Refresh
     @IBAction func refreshData(_ sender: Any) {
-        presenter?.viewDidLoad()
+        self.presenter?.viewDidLoad()
     }
     
     // MARK: - TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filmModels.count
+        return self.filmModels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,29 +72,26 @@ class FilmsListTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        filmCell.filmModel = filmModels[indexPath.row]
+        filmCell.filmModel = self.filmModels[indexPath.row]
         
         return filmCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let filmModel = filmModels[indexPath.row]
-        presenter?.showDetailFilmController(fromFilmModel: filmModel)
+        let filmModel = self.filmModels[indexPath.row]
+        self.presenter?.showDetailFilmController(fromFilmModel: filmModel)
     }
 }
 
 // MARK: - FilmsListView
 extension FilmsListTableViewController: FilmsListView {
-    func showFilmsListFromModels(_ filmModels: [FilmModel]) {
+    
+    func setFilmModels(_ filmModels: [FilmModel]) {
         self.filmModels = filmModels
-        updateTable()
+        self.updateTable()
     }
     
     func showErrorDownoadingFilms() {
-        self.showAlert(title: "errorAlert".localized,
-                       message: "errorAlertMessage".localized) {
-                        
-                        
-        }
+        self.showAlert(title: "errorAlert".localized, message: "errorAlertMessage".localized)
     }
 }

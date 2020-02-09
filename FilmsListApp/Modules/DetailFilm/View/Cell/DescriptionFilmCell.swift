@@ -11,11 +11,11 @@ import UIKit
 class DescriptionFilmCell: UITableViewCell {
 
     // MARK: - Properties
-    @IBOutlet weak var descriptionText: UITextView!
+    @IBOutlet private weak var descriptionText: UITextView!
     
     var filmModel: FilmModel? {
         didSet {
-            configure()
+            self.configure()
         }
     }
     
@@ -27,10 +27,10 @@ class DescriptionFilmCell: UITableViewCell {
     }
     
     private func configure() {
-        guard let filmModel = filmModel else {
+        guard let filmModel = self.filmModel else {
             return
         }
         
-        descriptionText.text = filmModel.description ?? "noDescription".localized
+        self.descriptionText.text = filmModel.description ?? "noDescription".localized
     }
 }
